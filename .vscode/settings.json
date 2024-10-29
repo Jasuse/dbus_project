@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.compileCommands": "/home/vboxuser/dbus_project/builddir/compile_commands.json",
+    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
+    "files.associations": {
+        "iostream": "cpp"
+    }
+}

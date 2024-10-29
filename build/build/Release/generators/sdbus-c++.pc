@@ -1,0 +1,11 @@
+prefix=/home/vboxuser/.conan2/p/b/sdbus92db29e67424e/p
+libdir=${prefix}/lib
+includedir=${prefix}/include
+bindir=${prefix}/bin
+
+Name: sdbus-c++
+Description: Conan component: sdbus-c++-sdbus-c++
+Version: 2.0.0
+Libs: -L"${libdir}" -lsdbus-c++ -lpthread -lm
+Cflags: -I"${includedir}"
+Requires: libsystemd
