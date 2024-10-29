@@ -1,0 +1,10 @@
+prefix=/home/vboxuser/.conan2/p/b/xz_ute364420ef725e/p
+libdir=${prefix}/lib
+includedir=${prefix}/include
+bindir=${prefix}/bin
+
+Name: liblzma
+Description: Conan package: liblzma
+Version: 5.4.5
+Libs: -L"${libdir}" -llzma -lpthread
+Cflags: -I"${includedir}" -DLZMA_API_STATIC

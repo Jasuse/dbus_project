@@ -1,0 +1,11 @@
+prefix=/home/vboxuser/.conan2/p/b/libse3483823c404fb/p
+libdir=${prefix}/lib
+includedir=${prefix}/include
+bindir=${prefix}/bin
+
+Name: libselinux
+Description: Conan component: libselinux-libselinux
+Version: 3.6
+Libs: -L"${libdir}" -lselinux
+Cflags: -I"${includedir}"
+Requires: libsepol libpcre2

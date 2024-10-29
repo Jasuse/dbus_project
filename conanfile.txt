@@ -3,5 +3,6 @@ sdbus-cpp/2.0.0
 [generators]
 PkgConfigDeps
 MesonToolchain
-[layout]
-cmake_layout
+
+[imports]
+include, *.h -> ./include @ folder=True

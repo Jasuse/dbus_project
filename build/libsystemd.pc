@@ -1,0 +1,11 @@
+prefix=/home/vboxuser/.conan2/p/b/libsy5f24186547400/p
+libdir=${prefix}/lib
+includedir=${prefix}/include
+bindir=${prefix}/bin
+
+Name: libsystemd
+Description: Conan package: libsystemd
+Version: 255.2
+Libs: -L"${libdir}" -lsystemd -lrt -lpthread -ldl
+Cflags: -I"${includedir}"
+Requires: libcap libmount libxcrypt libselinux liblz4 liblzma libzstd

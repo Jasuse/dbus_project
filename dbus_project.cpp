@@ -9,7 +9,9 @@ int main(int argc, char **argv) {
     auto permissions = sdbus::createObject(*connection, std::move(objectPath));
 
     auto request_perm = [&permissions](const std::string& path) {
-        throw sdbus::Error(sdbus::Error::Name{"com.system.permissions.UnauthorizedAccess"}, "Application has no permission");
+        auto msg = permissions->getCurrentlyProcessedMessage();
+        std::cout << msg.getCredsPid() << "\n";
+        throw sdbus::Error(sdbus::Error::Name{"com.system.permissions.UnauthorizedAccess"}, "Application has no permissions");
     };
     permissions->addVTable(
         sdbus::registerMethod("RequestPermission").implementedAs(std::move(request_perm)))
