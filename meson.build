@@ -3,8 +3,8 @@ project('dbus_project', 'cpp',
   default_options : ['warning_level=3', 'cpp_std=c++17'])
 
 sdbus_dep = dependency('sdbus-c++')
+sqlite_dep = dependency('sqlitecpp')
+executable('PermissionsServer',
+           'src/permissions_server/main.cpp', dependencies: [sdbus_dep, sqlite_dep])
 
-executable('dbus_project',
-           'dbus_project.cpp', dependencies: [sdbus_dep])
-
-executable('dbus_client', 'dbus_client.cpp', dependencies: [sdbus_dep])
+executable('Client', 'src/client/main.cpp', dependencies: [sdbus_dep])

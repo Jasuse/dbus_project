@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION ${CMAKE_VERSION})
-project(MesonTemp LANGUAGES C)
+project(MesonTemp LANGUAGES CXX)
 cmake_minimum_required(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION})
 
 set(TMP_PATHS_LIST)

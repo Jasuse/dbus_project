@@ -1,6 +1,6 @@
-Build started at 2024-10-29T23:59:17.606670
+Build started at 2024-10-31T13:04:38.463674
 Main binary: /home/vboxuser/.local/pipx/venvs/meson/bin/python
-Build Options: 
+Build Options: --native-file=build/conan_meson_native.ini
 Python system: Linux
 The Meson build system
 Version: 1.6.0
@@ -10,17 +10,17 @@ Build type: native build
 Project name: dbus_project
 Project version: 0.1
 -----------
-Detecting compiler via: `cc --version` -> 0
+Detecting compiler via: `g++ --version` -> 0
 stdout:
-cc (Debian 12.2.0-14) 12.2.0
+g++ (Debian 12.2.0-14) 12.2.0
 Copyright (C) 2022 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 -----------
-Running command: -cpp -x c -E -dM -
+Running command: -cpp -x c++ -E -dM -
 -----
 -----------
-Detecting linker via: `cc -Wl,--version` -> 0
+Detecting linker via: `g++ -Wl,--version` -> 0
 stdout:
 GNU ld (GNU Binutils for Debian) 2.40
 Copyright (C) 2023 Free Software Foundation, Inc.
@@ -30,20 +30,20 @@ This program has absolutely no warranty.
 -----------
 stderr:
 collect2 version 12.2.0
-/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/cchhb4Tm.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
+/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdZGs7t.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
 -----------
-Sanity testing C compiler: cc
+Sanity testing C++ compiler: g++
 Is cross compiler: False.
-Sanity check compiler command line: cc sanitycheckc.c -o sanitycheckc.exe -D_FILE_OFFSET_BITS=64
+Sanity check compiler command line: g++ sanitycheckcpp.cc -o sanitycheckcpp.exe -D_FILE_OFFSET_BITS=64
 Sanity check compile stdout:
 
 -----
 Sanity check compile stderr:
 
 -----
-Running test binary command:  /home/vboxuser/dbus_project/build/meson-private/sanitycheckc.exe
-C compiler for the host machine: cc (gcc 12.2.0 "cc (Debian 12.2.0-14) 12.2.0")
-C linker for the host machine: cc ld.bfd 2.40
+Running test binary command:  /home/vboxuser/dbus_project/build/meson-private/sanitycheckcpp.exe
+C++ compiler for the host machine: g++ (gcc 12.2.0 "g++ (Debian 12.2.0-14) 12.2.0")
+C++ linker for the host machine: g++ ld.bfd 2.40
 -----------
 Detecting archiver via: `gcc-ar --version` -> 0
 stdout:
@@ -54,17 +54,17 @@ the GNU General Public License version 3 or (at your option) any later version.
 This program has absolutely no warranty.
 -----------
 -----------
-Detecting compiler via: `cc --version` -> 0
+Detecting compiler via: `g++ --version` -> 0
 stdout:
-cc (Debian 12.2.0-14) 12.2.0
+g++ (Debian 12.2.0-14) 12.2.0
 Copyright (C) 2022 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 -----------
-Running command: -cpp -x c -E -dM -
+Running command: -cpp -x c++ -E -dM -
 -----
 -----------
-Detecting linker via: `cc -Wl,--version` -> 0
+Detecting linker via: `g++ -Wl,--version` -> 0
 stdout:
 GNU ld (GNU Binutils for Debian) 2.40
 Copyright (C) 2023 Free Software Foundation, Inc.
@@ -74,20 +74,20 @@ This program has absolutely no warranty.
 -----------
 stderr:
 collect2 version 12.2.0
-/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKJbIb3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
+/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccS07q1H.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
 -----------
-Sanity testing C compiler: cc
+Sanity testing C++ compiler: g++
 Is cross compiler: False.
-Sanity check compiler command line: cc sanitycheckc.c -o sanitycheckc.exe -D_FILE_OFFSET_BITS=64
+Sanity check compiler command line: g++ sanitycheckcpp.cc -o sanitycheckcpp.exe -D_FILE_OFFSET_BITS=64
 Sanity check compile stdout:
 
 -----
 Sanity check compile stderr:
 
 -----
-Running test binary command:  /home/vboxuser/dbus_project/build/meson-private/sanitycheckc.exe
-C compiler for the build machine: cc (gcc 12.2.0 "cc (Debian 12.2.0-14) 12.2.0")
-C linker for the build machine: cc ld.bfd 2.40
+Running test binary command:  /home/vboxuser/dbus_project/build/meson-private/sanitycheckcpp.exe
+C++ compiler for the build machine: g++ (gcc 12.2.0 "g++ (Debian 12.2.0-14) 12.2.0")
+C++ linker for the build machine: g++ ld.bfd 2.40
 -----------
 Detecting archiver via: `gcc-ar --version` -> 0
 stdout:
@@ -107,44 +107,158 @@ Pkg-config binary missing from cross or native file, or env var undefined.
 Trying a default Pkg-config fallback at pkg-config
 Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
 Determining dependency 'sdbus-c++' with pkg-config executable '/usr/bin/pkg-config'
-env[PKG_CONFIG_PATH]: 
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
 env[PKG_CONFIG]: /usr/bin/pkg-config
 -----------
-Called: `/usr/bin/pkg-config --modversion sdbus-c++` -> 1
-stderr:
-Package sdbus-c++ was not found in the pkg-config search path.
-Perhaps you should add the directory containing `sdbus-c++.pc'
-to the PKG_CONFIG_PATH environment variable
-Package 'sdbus-c++', required by 'virtual:world', not found
+Called: `/usr/bin/pkg-config --modversion sdbus-c++` -> 0
+stdout:
+2.0.0
 -----------
-CMake binary for host machine is not cached
-CMake binary missing from cross or native file, or env var undefined.
-Trying a default CMake fallback at cmake
-Found CMake: /usr/bin/cmake (3.25.1)
-Extracting basic cmake information
-CMake Toolchain: Calling CMake once to generate the compiler state
-Calling CMake (['/usr/bin/cmake']) in /home/vboxuser/dbus_project/build/meson-private/__CMake_compiler_info__ with:
-  - "--trace-expand"
-  - "--trace-format=json-v1"
-  - "--no-warn-unused-cli"
-  - "--trace-redirect=cmake_trace.txt"
-  - "-G"
-  - "Ninja"
-  - "-DCMAKE_TOOLCHAIN_FILE=/home/vboxuser/dbus_project/build/meson-private/__CMake_compiler_info__/CMakeMesonTempToolchainFile.cmake"
-  - "."
-Try CMake generator: auto
-Calling CMake (['/usr/bin/cmake']) in /home/vboxuser/dbus_project/build/meson-private/cmake_sdbus-c++ with:
-  - "--trace-expand"
-  - "--trace-format=json-v1"
-  - "--no-warn-unused-cli"
-  - "--trace-redirect=cmake_trace.txt"
-  - "-DCMAKE_TOOLCHAIN_FILE=/home/vboxuser/dbus_project/build/meson-private/cmake_sdbus-c++/CMakeMesonToolchainFile.cmake"
-  - "."
-  -- Module search paths:    ['/', '/opt', '/usr', '/usr/local']
-  -- CMake root:             /usr/share/cmake-3.25
-  -- CMake architectures:    ['x86_64-linux-gnu']
-  -- CMake lib search paths: ['lib', 'lib32', 'lib64', 'libx32', 'share', '', 'lib/x86_64-linux-gnu']
-Preliminary CMake check failed. Aborting.
-Run-time dependency sdbus-c++ found: NO (tried pkgconfig and cmake)
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --cflags sdbus-c++` -> 0
+stdout:
+-I/home/vboxuser/.conan2/p/b/sdbus92db29e67424e/p/include -I/home/vboxuser/.conan2/p/b/libsy5f24186547400/p/include -I/home/vboxuser/.conan2/p/b/libcab5f32a3f5029d/p/include -I/home/vboxuser/.conan2/p/b/libmo908040899cc4a/p/include -I/home/vboxuser/.conan2/p/b/libmo908040899cc4a/p/include/libmount -I/home/vboxuser/.conan2/p/b/libxc90f19ed53edde/p/include -I/home/vboxuser/.conan2/p/b/libse3483823c404fb/p/include -I/home/vboxuser/.conan2/p/b/pcre2b59266bcdf908/p/include -I/home/vboxuser/.conan2/p/b/zlibaaddf872cc3bc/p/include -I/home/vboxuser/.conan2/p/b/bzip2abd5159f03986/p/include -DPCRE2_STATIC -I/home/vboxuser/.conan2/p/b/lz47e534bd398a8b/p/include -I/home/vboxuser/.conan2/p/b/xz_ute364420ef725e/p/include -DLZMA_API_STATIC -I/home/vboxuser/.conan2/p/b/zstd28e1ded952ec5/p/include
+-----------
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --libs sdbus-c++` -> 0
+stdout:
+-L/home/vboxuser/.conan2/p/b/sdbus92db29e67424e/p/lib -lsdbus-c++ -lm -L/home/vboxuser/.conan2/p/b/libsy5f24186547400/p/lib -lsystemd -ldl -L/home/vboxuser/.conan2/p/b/libcab5f32a3f5029d/p/lib -lcap -L/home/vboxuser/.conan2/p/b/libmo908040899cc4a/p/lib -lmount -lrt -lblkid -L/home/vboxuser/.conan2/p/b/libxc90f19ed53edde/p/lib -lcrypt -L/home/vboxuser/.conan2/p/b/libse3483823c404fb/p/lib -lselinux -lsepol -L/home/vboxuser/.conan2/p/b/pcre2b59266bcdf908/p/lib -L/home/vboxuser/.conan2/p/b/zlibaaddf872cc3bc/p/lib -L/home/vboxuser/.conan2/p/b/bzip2abd5159f03986/p/lib -lpcre2-16 -lpcre2-32 -lpcre2-posix -lpcre2-8 -lz -lbz2 -L/home/vboxuser/.conan2/p/b/lz47e534bd398a8b/p/lib -llz4 -L/home/vboxuser/.conan2/p/b/xz_ute364420ef725e/p/lib -llzma -L/home/vboxuser/.conan2/p/b/zstd28e1ded952ec5/p/lib -lzstd -lpthread
+-----------
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --libs sdbus-c++` -> 0
+stdout:
+-L/home/vboxuser/.conan2/p/b/sdbus92db29e67424e/p/lib -lsdbus-c++ -lm -L/home/vboxuser/.conan2/p/b/libsy5f24186547400/p/lib -lsystemd -ldl -L/home/vboxuser/.conan2/p/b/libcab5f32a3f5029d/p/lib -lcap -L/home/vboxuser/.conan2/p/b/libmo908040899cc4a/p/lib -lmount -lrt -lblkid -L/home/vboxuser/.conan2/p/b/libxc90f19ed53edde/p/lib -lcrypt -L/home/vboxuser/.conan2/p/b/libse3483823c404fb/p/lib -lselinux -lsepol -L/home/vboxuser/.conan2/p/b/pcre2b59266bcdf908/p/lib -L/home/vboxuser/.conan2/p/b/zlibaaddf872cc3bc/p/lib -L/home/vboxuser/.conan2/p/b/bzip2abd5159f03986/p/lib -lpcre2-16 -lpcre2-32 -lpcre2-posix -lpcre2-8 -lz -lbz2 -L/home/vboxuser/.conan2/p/b/lz47e534bd398a8b/p/lib -llz4 -L/home/vboxuser/.conan2/p/b/xz_ute364420ef725e/p/lib -llzma -L/home/vboxuser/.conan2/p/b/zstd28e1ded952ec5/p/lib -lzstd -lpthread
+-----------
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpckfk9ohy
+Code:
 
-meson.build:5:12: ERROR: Dependency "sdbus-c++" not found, tried pkgconfig and cmake
+        #include<stddef.h>
+        #include<stdio.h>
+        int main(void) {
+            printf("%ld\n", (long)(sizeof(void *)));
+            return 0;
+        }
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpckfk9ohy/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpckfk9ohy/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive` -> 0
+Program stdout:
+
+8
+
+Program stderr:
+
+
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpw6xllym_
+Code:
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpw6xllym_/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpw6xllym_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs` -> 0
+stdout:
+install: /usr/lib/gcc/x86_64-linux-gnu/12/
+programs: =/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/12/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/12/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/
+-----------
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpm91bl0or
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpm91bl0or/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpm91bl0or/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -lm -Wl,--allow-shlib-undefined` -> 0
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpm8tgjt7h
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpm8tgjt7h/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpm8tgjt7h/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -ldl -Wl,--allow-shlib-undefined` -> 0
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpc0rxioyy
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpc0rxioyy/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpc0rxioyy/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -lrt -Wl,--allow-shlib-undefined` -> 0
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpy0ilhy3o
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpy0ilhy3o/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpy0ilhy3o/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -lpthread -Wl,--allow-shlib-undefined` -> 0
+Run-time dependency sdbus-c++ found: YES 2.0.0
+Determining dependency 'sqlitecpp' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --modversion sqlitecpp` -> 0
+stdout:
+3.3.2
+-----------
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --cflags sqlitecpp` -> 0
+stdout:
+-I/home/vboxuser/.conan2/p/b/sqlitdeb0c2e0825ed/p/include -I/home/vboxuser/.conan2/p/b/sqlit38c9670043137/p/include
+-----------
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --libs sqlitecpp` -> 0
+stdout:
+-L/home/vboxuser/.conan2/p/b/sqlitdeb0c2e0825ed/p/lib -lSQLiteCpp -L/home/vboxuser/.conan2/p/b/sqlit38c9670043137/p/lib -lsqlite3 -lpthread -ldl -lm
+-----------
+env[PKG_CONFIG_PATH]: /home/vboxuser/dbus_project/build
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --libs sqlitecpp` -> 0
+stdout:
+-L/home/vboxuser/.conan2/p/b/sqlitdeb0c2e0825ed/p/lib -lSQLiteCpp -L/home/vboxuser/.conan2/p/b/sqlit38c9670043137/p/lib -lsqlite3 -lpthread -ldl -lm
+-----------
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpsjewheha
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpsjewheha/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpsjewheha/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -lpthread -Wl,--allow-shlib-undefined` -> 0
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpm1r97msn
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpm1r97msn/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpm1r97msn/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -ldl -Wl,--allow-shlib-undefined` -> 0
+Running compile:
+Working directory:  /home/vboxuser/dbus_project/build/meson-private/tmpr6d1c4yf
+Code:
+int main(void) { return 0; }
+
+-----------
+Command line: `g++ /home/vboxuser/dbus_project/build/meson-private/tmpr6d1c4yf/testfile.cpp -o /home/vboxuser/dbus_project/build/meson-private/tmpr6d1c4yf/output.exe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -lm -Wl,--allow-shlib-undefined` -> 0
+Run-time dependency sqlitecpp found: YES 3.3.2
+Build targets in project: 2
+
+dbus_project 0.1
+
+  User defined options
+    Native files: build/conan_meson_native.ini
+
+Found ninja-1.11.1 at /usr/bin/ninja
+Running compile:
+Working directory:  /tmp/tmpfdz3ooc9
+Code:
+int i = static_cast<int>(0);
+-----------
+Command line: `g++ /tmp/tmpfdz3ooc9/testfile.cpp -o /tmp/tmpfdz3ooc9/output.obj -D_FILE_OFFSET_BITS=64 -c -std=gnu++17` -> 0
+Compiler accepts -std=gnu++17: YES
