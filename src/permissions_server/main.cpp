@@ -17,6 +17,7 @@ enum Permissions {
 };
 
 //TECH DEBT: move all of this to class
+//TO DO: make it async
 int main() {
     // TO DO : shouldn`t we contain     \/\/\/ in meson file?
     sdbus::ServiceName serviceName {"com.system.permissions"};
@@ -25,12 +26,9 @@ int main() {
     sdbus::ObjectPath objectPath {"/com/system/permissions"};
     auto permissions = sdbus::createObject(*connection, std::move(objectPath));
 
-    // SQLite supports multithreading, but when we are not making multiple connections
-    // which (I assume) we do
     std::mutex db_mutex;
     SQLite::Database db ("permissions.db", SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
     
-    // Maybe we can use hashmap(with lifetime?) to cache PID`s with permissions
     db.exec("CREATE TABLE IF NOT EXISTS permissions (path NVARCHAR(255), permissions INTEGER)");
     
     auto request_perm_impl = [&permissions, &db_mutex, &db](int permission) {
