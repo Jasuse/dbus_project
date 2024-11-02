@@ -10,10 +10,13 @@
 std::string get_path_from_ls(std::string ls_out);
 std::string run_cmd(const char* cmd);
 
+bool check_permission_internal(const SQLite::Database& db, const std::string& path, int permission);
+
 enum Permissions {
     SystemTime = 0
 };
 
+//TECH DEBT: move all of this to class
 int main() {
     // TO DO : shouldn`t we contain     \/\/\/ in meson file?
     sdbus::ServiceName serviceName {"com.system.permissions"};
@@ -31,28 +34,26 @@ int main() {
     db.exec("CREATE TABLE IF NOT EXISTS permissions (path NVARCHAR(255), permissions INTEGER)");
     
     auto request_perm_impl = [&permissions, &db_mutex, &db](int permission) {
-        std::cout << "---REQUEST PERMISSION---\n";
         if(permission > 0) {
             throw
                 sdbus::Error(sdbus::Error::Name{"com.system.permissions.InvalidPermission"},
                      "There is no such permission");
         }
         auto msg = permissions->getCurrentlyProcessedMessage();
-        std::cout << msg.getCredsPid() << "\n";
-
 
         std::string cmd = "readlink -f /proc/";
         cmd.append(std::to_string(msg.getCredsPid()));
         cmd.append("/exe");
         std::string path = run_cmd(cmd.c_str());
-        std::cout << "Path : " << path << "\n";
 
         std::lock_guard<std::mutex> db_guard(db_mutex);
+        if(check_permission_internal(db, path, permission)) {
+            return;
+        }
+
         SQLite::Statement query {db, "INSERT INTO permissions (path, permissions) VALUES (?,?) "};
         query.bind(1, path);
         query.bind(2, permission);
-        
-        std::cout << query.getExpandedSQL() << "\n";
         try {
             query.exec();
         } catch(const SQLite::Exception& exc) {
@@ -61,7 +62,6 @@ int main() {
     };
 
     auto check_permission_impl = [&permissions, &db_mutex, &db](std::string path, int permission) {
-        std::cout << "---CHECK PERMISSION---\n";
         if(permission > 0) {
             throw
                 sdbus::Error(sdbus::Error::Name{"com.system.permissions.InvalidPermission"},
@@ -69,22 +69,7 @@ int main() {
         }
 
         std::lock_guard<std::mutex> db_guard(db_mutex);
-        std::cout << "Looking for " << path << "\n";
-        SQLite::Statement query {db, "SELECT COUNT(*) FROM permissions WHERE path = (?) AND permissions = (?) "};
-        query.bind(1, path);
-        query.bind(2, permission);
-        try {
-            bool has_val = query.executeStep();
-            if (has_val) {
-                int count = query.getColumn(0);
-                std::cout << "Found in query " << count << " elements\n";
-                return count > 0;
-            }
-            return false;
-        } catch(const SQLite::Exception& exc) {
-            std::cout << "Caught SQLite exception (a bug): " << exc.getErrorStr() ;
-        }
-        return false;
+        return check_permission_internal(db, path, permission);
     };
 
     
@@ -127,4 +112,20 @@ std::string get_path_from_ls(std::string pwdx_out) {
         return "";
     }
     return std::string(pwdx_out.cbegin() + separator_idx + 1 + 1, pwdx_out.cend());
+}
+
+bool check_permission_internal(const SQLite::Database& db, const std::string& path, int permission) {
+    SQLite::Statement query {db, "SELECT COUNT(*) FROM permissions WHERE path = (?) AND permissions = (?)"};
+    query.bind(1, path);
+    query.bind(2, permission);
+
+    int count = 0;
+    try {
+        if (query.executeStep()) {
+            count = query.getColumn(0);
+        }
+    } catch(const SQLite::Exception& exc) {
+        std::cout << "Caught SQLite exception (a bug): " << exc.getErrorStr() ;
+    }
+    return count > 0;
 }
