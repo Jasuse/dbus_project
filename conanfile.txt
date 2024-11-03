@@ -4,6 +4,3 @@ sqlitecpp/3.3.2
 [generators]
 PkgConfigDeps
 MesonToolchain
-
-[imports]
-include, *.h -> ./include @ folder=True
