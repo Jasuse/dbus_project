@@ -4,6 +4,8 @@
 
 #include "SQLiteCpp/SQLiteCpp.h"
 #include "adaptor.h"
+
+enum Permissions { SystemTime = 0, MAX };
 class PermissionsService
     : public sdbus::AdaptorInterfaces<PermissionsServiceAdaptor> {
    public:

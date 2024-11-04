@@ -8,7 +8,6 @@
 #include "SQLiteCpp/SQLiteCpp.h"
 #include "sdbus-c++/sdbus-c++.h"
 #include "service.h"
-enum Permissions { SystemTime = 0 };
 
 int main() {
     auto service_name = sdbus::ServiceName{"com.system.permissions"};

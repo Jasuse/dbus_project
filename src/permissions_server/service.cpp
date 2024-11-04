@@ -20,7 +20,7 @@ void PermissionsService::RequestPermission(sdbus::Result<>&& result,
     auto msg = getObject().getCurrentlyProcessedMessage();
     std::thread([this, result = std::move(result),
                  permission = std::move(permission), msg = std::move(msg)]() {
-        if (permission > 0) {
+        if (permission >= Permissions::MAX) {
             result.returnError(sdbus::Error(
                 sdbus::Error::Name{"com.system.permissions.InvalidPermission"},
                 "There is no such permission"));
@@ -54,7 +54,7 @@ void PermissionsService::CheckApplicationHasPermission(
     sdbus::Result<bool>&& result, std::string path, int permission) {
     std::thread([this, result = std::move(result), path = std::move(path),
                  permission = std::move(permission)]() {
-        if (permission > 0) {
+        if (permission >= Permissions::MAX) {
             result.returnError(sdbus::Error(
                 sdbus::Error::Name{"com.system.permissions.InvalidPermission"},
                 "There is no such permission"));

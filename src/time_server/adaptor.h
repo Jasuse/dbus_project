@@ -7,8 +7,7 @@ class TimeServiceAdaptor {
    protected:
     TimeServiceAdaptor(sdbus::IObject& object);
     TimeServiceAdaptor(const TimeServiceAdaptor&) = delete;
-    TimeServiceAdaptor& operator=(const TimeServiceAdaptor&) =
-        delete;
+    TimeServiceAdaptor& operator=(const TimeServiceAdaptor&) = delete;
 
     TimeServiceAdaptor(TimeServiceAdaptor&&) = delete;
     TimeServiceAdaptor& operator=(TimeServiceAdaptor&&) = delete;

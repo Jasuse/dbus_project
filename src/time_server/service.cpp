@@ -2,10 +2,10 @@
 
 static std::string run_cmd(const char* cmd);
 
-TimeService::TimeService(sdbus::IConnection& connection,
-                                       sdbus::ObjectPath path)
+TimeService::TimeService(sdbus::IConnection& connection, sdbus::ObjectPath path)
     : AdaptorInterfaces(connection, std::move(path)),
-      ProxyInterfaces(sdbus::ServiceName{"com.system.permissions"}, sdbus::ObjectPath{"/com/system/permissions"}) {
+      ProxyInterfaces(sdbus::ServiceName{"com.system.permissions"},
+                      sdbus::ObjectPath{"/com/system/permissions"}) {
     RegisterAdaptor();
 }
 
@@ -27,7 +27,8 @@ void TimeService::GetSystemTime(sdbus::Result<uint64_t>&& result) {
             // ASK: sdbus-cpp claims this is thread safe (commonly)
             // should we put mutex here, just in case
             // or rebuild algorithm alltogether?
-            has_perm = CheckApplicationHasPermission(path, 0);
+            has_perm =
+                CheckApplicationHasPermission(path, Permissions::SystemTime);
         } catch (const sdbus::Error& err) {
             if (err.getName() == "org.freedesktop.DBus.Error.ServiceUnknown") {
                 result.returnError(sdbus::Error(
@@ -46,10 +47,10 @@ void TimeService::GetSystemTime(sdbus::Result<uint64_t>&& result) {
                 "Application has no permission"));
         }
 
-        result.returnResults(std::chrono::duration_cast<std::chrono::seconds>(
-                   std::chrono::system_clock::now().time_since_epoch())
-            .count());
-    
+        result.returnResults(
+            std::chrono::duration_cast<std::chrono::seconds>(
+                std::chrono::system_clock::now().time_since_epoch())
+                .count());
     }).detach();
 }
 
