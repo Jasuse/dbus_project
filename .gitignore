@@ -2,3 +2,5 @@ build*/
 build*/permissions.db
 build*/*/permissions.db
 permissions.db
+.vscode
+.vscode/*
