@@ -1,11 +1,11 @@
 
 # Prerequisites:
-- [Git](https://git-scm.com/),
-- [Conan](https://conan.io/),
-- [Meson](https://mesonbuild.com/),
-- [CMake](https://cmake.org/) (for building dependencies),
-- [Ninja](https://ninja-build.org/),
-- [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/),
+- [Git](https://git-scm.com/)
+- [Conan](https://conan.io/)
+- [Meson](https://mesonbuild.com/)
+- [CMake](https://cmake.org/) (for building dependencies)
+- [Ninja](https://ninja-build.org/)
+- [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/)
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 
 # Getting started
@@ -15,12 +15,12 @@
 - Agree to install packages (Y)
 - `pipx install meson`
 - `pipx install conan`
-- If pipx will ask for setting up PATH to pipx, do it (command below)
+- If pipx will ask for setting up PATH for pipx, do it (command below)
 - `pipx ensurepath`
 - Reboot terminal
 
 
-## 2. Clone project
+## 2. Download project
 - `git clone https://github.com/Jasuse/dbus_project.git`
 - `cd dbus_project/`
 
@@ -50,8 +50,3 @@ A. Project fails to compile:
 B. clang-format(-check) is unknown target for ninja
 1. Ensure `clang-format` is installed
 2. Delete build folder and run `./setup.sh` again 
-
-# Obvious TO DOs:
-1. Move clients, servers to subprojects
-2. Move DBus code to classes to ensure these objects are incapsulated (and embeddable)
-3. Add async execution of methods (see 2.)
