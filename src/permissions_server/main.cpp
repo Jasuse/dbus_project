@@ -1,4 +1,3 @@
-
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -11,7 +10,9 @@
 
 int main() {
     auto service_name = sdbus::ServiceName{"com.system.permissions"};
-    auto connection = sdbus::createBusConnection(service_name);
+
+    auto connection = sdbus::createSessionBusConnection();
+    connection->requestName(service_name);
 
     auto object_path = sdbus::ObjectPath{"/com/system/permissions"};
 

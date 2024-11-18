@@ -6,13 +6,15 @@
 #include "sdbus-c++/sdbus-c++.h"
 
 int main() {
-    auto time_proxy = sdbus::createProxy(sdbus::ServiceName{"com.system.time"},
-                                         sdbus::ObjectPath{"/com/system/time"});
+    auto connection = sdbus::createSessionBusConnection();
+    auto time_proxy =
+        sdbus::createProxy(*connection, sdbus::ServiceName{"com.system.time"},
+                           sdbus::ObjectPath{"/com/system/time"});
     sdbus::InterfaceName time_interface{"com.system.Time"};
 
-    auto perms_proxy =
-        sdbus::createProxy(sdbus::ServiceName{"com.system.permissions"},
-                           sdbus::ObjectPath{"/com/system/permissions"});
+    auto perms_proxy = sdbus::createProxy(
+        *connection, sdbus::ServiceName{"com.system.permissions"},
+        sdbus::ObjectPath{"/com/system/permissions"});
     sdbus::InterfaceName perms_interface{"com.system.Permissions"};
 
     bool success = false;
