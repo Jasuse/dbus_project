@@ -4,7 +4,7 @@
 
 TimeService::TimeService(sdbus::IConnection& connection, sdbus::ObjectPath path)
     : AdaptorInterfaces(connection, std::move(path)),
-      ProxyInterfaces(sdbus::ServiceName{"com.system.permissions"},
+      ProxyInterfaces(connection, sdbus::ServiceName{"com.system.permissions"},
                       sdbus::ObjectPath{"/com/system/permissions"}) {
     RegisterAdaptor();
 }
