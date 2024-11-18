@@ -1,6 +1,6 @@
 #include "service.h"
 
-static std::string run_cmd(const char* cmd);
+#include <filesystem>
 
 TimeService::TimeService(sdbus::IConnection& connection, sdbus::ObjectPath path)
     : AdaptorInterfaces(connection, std::move(path)),
@@ -17,10 +17,12 @@ TimeService::~TimeService() {
 void TimeService::GetSystemTime(sdbus::Result<uint64_t>&& result) {
     auto msg = getObject().getCurrentlyProcessedMessage();
     std::thread([this, result = std::move(result), msg = std::move(msg)]() {
-        std::string cmd = "readlink -f /proc/";
-        cmd.append(std::to_string(msg.getCredsPid()));
-        cmd.append("/exe");
-        std::string path = run_cmd(cmd.c_str());
+        std::string str_path = "";
+        str_path.append("/proc/");
+        str_path.append(std::to_string(msg.getCredsPid()));
+        str_path.append("/exe");
+        std::filesystem::path p(std::move(str_path));
+        std::string path = std::filesystem::read_symlink(p);
         bool has_perm = false;
 
         try {
@@ -52,29 +54,4 @@ void TimeService::GetSystemTime(sdbus::Result<uint64_t>&& result) {
                 std::chrono::system_clock::now().time_since_epoch())
                 .count());
     }).detach();
-}
-
-static std::string run_cmd(const char* cmd) {
-    std::array<char, 256> buffer;
-    std::string res;
-
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
-    if (!pipe) {
-        throw std::runtime_error("Failed to execute cmd!");
-    }
-    while (fgets(buffer.data(), static_cast<int>(buffer.size()), pipe.get()) !=
-           nullptr) {
-        res += buffer.data();
-    }
-
-    // ltrim
-    res.erase(res.begin(),
-              std::find_if(res.begin(), res.end(),
-                           [](unsigned char ch) { return !std::isspace(ch); }));
-    // rtrim
-    res.erase(std::find_if(res.rbegin(), res.rend(),
-                           [](unsigned char ch) { return !std::isspace(ch); })
-                  .base(),
-              res.end());
-    return res;
 }
